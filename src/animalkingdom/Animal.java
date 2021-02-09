@@ -22,7 +22,7 @@ abstract class Animal
     abstract String getMove();
     abstract String getBreath();
     abstract String getReproduce();
-    
+
     // shared methods implemented for all child classes
     void eat(int amount) 
     {
@@ -57,5 +57,16 @@ abstract class Animal
     void setFood(int amount)
     {
         eat(amount);
+    }
+    
+    String printDescription()
+    {
+        return name + " " + getReproduce() + " " + getMove() + " " + getBreath() + " " + year;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Animals{id=" + id + ", name='" + name + "', yearNamed=" + year + "}";
     }
 }
