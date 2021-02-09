@@ -6,6 +6,20 @@ import java.util.Comparator;
 
 public class Main 
 {
+    private static List<Animal> filterAnimals(List<Animal> theList, CheckAnimal tester)
+	// needs an interface to hold the implementation of the lambda function
+	{
+		List<Animal> tempList = new ArrayList<>();
+		for( Animal a : theList)
+		{
+			if(tester.test(a))
+			{
+				tempList.add(a);
+			}
+		}
+		return tempList;
+	}
+
     public static void main(String[] args)
     {
         System.out.println("Animal Kingdom App Created");
@@ -73,6 +87,35 @@ public class Main
         System.out.println("My Animal Kingdom: In order by how they move (fly, swim, walk) ");
         myAnimalKingdom.sort((a1, a2) -> a1.getMove().compareToIgnoreCase(a2.getMove()));
         System.out.println(myAnimalKingdom.toString());
-        //List<Animals> filteredList = filterAnimals(myAnimalKingdom, (a) -> )
+       
+        // filter animals into a list that breathe with lungs, print each description
+        System.out.println();
+        System.out.println("Animals that breathe with lungs");
+        List<Animal> filteredList = filterAnimals(myAnimalKingdom, (a) -> a.getBreath() == "lungs");
+        filteredList.forEach((a) -> System.out.println(a.printDescription()));
+
+        System.out.println();
+        System.out.println("Animals that breathe with lungs and were named in 1758");
+        filteredList = filterAnimals(myAnimalKingdom, (a) -> a.getBreath() == "lungs" && a.getYear() == 1758);
+        filteredList.forEach((a) -> System.out.println(a.printDescription()));
+
+        System.out.println();
+        System.out.println("Animals that lay eggs and breathe with lungs");
+        filteredList = filterAnimals(myAnimalKingdom, (a) -> a.getBreath() == "lungs" && a.getReproduce() == "eggs");
+        filteredList.forEach((a) -> System.out.println(a.printDescription()));
+
+        System.out.println();
+        System.out.println("Alphabetical list of Animals that were named in 1758");
+        filteredList = filterAnimals(myAnimalKingdom, (a) -> a.getYear() == 1758);
+        filteredList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+        filteredList.forEach((a) -> System.out.println(a.printDescription()));
+
+        // Stretch Goal
+        System.out.println();
+        System.out.println("Alphabetical list of Animals that are Mammals");
+        filteredList = filterAnimals(myAnimalKingdom, (a) -> a instanceof Mammal);
+        filteredList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+        filteredList.forEach((a) -> System.out.println(a.printDescription()));
+
     }
 }
