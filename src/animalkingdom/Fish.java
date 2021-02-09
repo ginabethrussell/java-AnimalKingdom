@@ -25,6 +25,4 @@ public class Fish extends Animal
         return "eggs";
     }
 
-
-
 }

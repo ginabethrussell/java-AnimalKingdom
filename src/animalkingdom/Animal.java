@@ -18,7 +18,7 @@ abstract class Animal
         this.year = year;
     }
 
-    // abstract methods
+    // abstract methods to be implementd in child classes
     abstract String getMove();
     abstract String getBreath();
     abstract String getReproduce();
@@ -58,7 +58,7 @@ abstract class Animal
     {
         eat(amount);
     }
-    
+
     String printDescription()
     {
         return name + " " + getReproduce() + " " + getMove() + " " + getBreath() + " " + year;
