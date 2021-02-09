@@ -1,6 +1,8 @@
 package animalkingdom;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections; 
+import java.util.Comparator;
 
 public class Main 
 {
@@ -30,27 +32,47 @@ public class Main
         Fish perch = new Fish("Perch", 1758);
         
        
-       List<Animal> myAnimalKingdom = new ArrayList<>();
-       myAnimalKingdom.add(panda);
-       myAnimalKingdom.add(zebra);
-       myAnimalKingdom.add(koala);
-       myAnimalKingdom.add(sloth);
-       myAnimalKingdom.add(armadillo);
-       myAnimalKingdom.add(raccoon);
-       myAnimalKingdom.add(bigfoot);
+        List<Animal> myAnimalKingdom = new ArrayList<>();
+        myAnimalKingdom.add(panda);
+        myAnimalKingdom.add(zebra);
+        myAnimalKingdom.add(koala);
+        myAnimalKingdom.add(sloth);
+        myAnimalKingdom.add(armadillo);
+        myAnimalKingdom.add(raccoon);
+        myAnimalKingdom.add(bigfoot);
 
-       myAnimalKingdom.add(pigeon);
-       myAnimalKingdom.add(peacock);
-       myAnimalKingdom.add(toucan);
-       myAnimalKingdom.add(parrot);
-       myAnimalKingdom.add(swan);
+        myAnimalKingdom.add(pigeon);
+        myAnimalKingdom.add(peacock);
+        myAnimalKingdom.add(toucan);
+        myAnimalKingdom.add(parrot);
+        myAnimalKingdom.add(swan);
 
-       myAnimalKingdom.add(salmon);
-       myAnimalKingdom.add(catfish);
-       myAnimalKingdom.add(perch);
-    
-    System.out.println(myAnimalKingdom.toString());
-    
-    myAnimalKingdom.forEach((a) -> System.out.println(a.printDescription()));
+        myAnimalKingdom.add(salmon);
+        myAnimalKingdom.add(catfish);
+        myAnimalKingdom.add(perch);
+        
+        // prints all animal instances
+        System.out.println(myAnimalKingdom.toString());
+        // prints description of each animal on a new line
+        myAnimalKingdom.forEach((a) -> System.out.println(a.printDescription()));
+
+        // print all of the animals by Descending order by year named
+        System.out.println("\n");
+        System.out.println("My Animal Kingdom: Reverse order by date ");
+        myAnimalKingdom.sort(Comparator.comparing(Animal::getYear).reversed());
+        System.out.println(myAnimalKingdom.toString());
+
+        // list all the animals alphabetically
+        System.out.println("\n");
+        System.out.println("My Animal Kingdom: Alphabetical by animal name ");
+        myAnimalKingdom.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+        System.out.println(myAnimalKingdom.toString());
+
+        // list all the animals in order by how they move
+        System.out.println("\n");
+        System.out.println("My Animal Kingdom: In order by how they move (fly, swim, walk) ");
+        myAnimalKingdom.sort((a1, a2) -> a1.getMove().compareToIgnoreCase(a2.getMove()));
+        System.out.println(myAnimalKingdom.toString());
+        //List<Animals> filteredList = filterAnimals(myAnimalKingdom, (a) -> )
     }
 }
